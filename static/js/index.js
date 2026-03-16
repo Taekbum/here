@@ -20,6 +20,44 @@ function setInterpolationImage(i) {
 }
 
 
+function initComparisonSliders() {
+  document.querySelectorAll('.comparison-group').forEach(function(group) {
+    var container = group.querySelector('.bal-container');
+    var input = group.querySelector('.bal-input');
+    var overlay = group.querySelector('.bal-overlay');
+    var divider = group.querySelector('.bal-divider');
+    var baseImg = group.querySelector('.bal-img:not(.bal-overlay)');
+    var toggles = group.querySelectorAll('.scene-toggle');
+
+    function update(val) {
+      var pct = parseFloat(val);
+      overlay.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      divider.style.left = pct + '%';
+    }
+
+    input.addEventListener('input', function() {
+      update(this.value);
+    });
+
+    update(50);
+
+    toggles.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        toggles.forEach(function(b) { b.classList.remove('is-active'); });
+        this.classList.add('is-active');
+
+        var scene = this.dataset.scene;
+        var key = scene.charAt(0).toUpperCase() + scene.slice(1);
+        baseImg.src = container.dataset['ours' + key];
+        overlay.src = container.dataset['naruto' + key];
+
+        input.value = 50;
+        update(50);
+      });
+    });
+  });
+}
+
 $(document).ready(function() {
     // Check for click events on the navbar burger icon
     $(".navbar-burger").click(function() {
@@ -74,5 +112,7 @@ $(document).ready(function() {
     $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
 
     bulmaSlider.attach();
+
+    initComparisonSliders();
 
 })

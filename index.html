@@ -211,51 +211,56 @@
         <br/>
         <!--/ Overall Pipeline. -->
 
-        <!-- Uncertainty Quantification. -->
-        <h3 class="title is-4">Uncertainty Quantification based on Evidential Deep Learning</h3>
-        <div class="content has-text-justified">
-          <p>
-            We quantify epistemic uncertainty by extending evidential deep learning (EDL) to
-            neural implicit mapping. A Normal Inverse-Gamma (NIG) prior is placed over the SDF
-            prediction at each 3D point, and the posterior is updated via two lightweight learnable
-            grids that predict a confidence score and a second moment. This design ensures
-            spatial locality and real-time performance through trilinear interpolation, while
-            keeping the mapping module unchanged. The entropy of the posterior NIG distribution
-            serves as the epistemic uncertainty measure: it is high in poorly observed or
-            unobserved regions and low where observations are sufficient, exhibiting a strong
-            correlation with actual SDF prediction errors.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images/uq_explain.png"
-               alt="Illustration of the epistemic uncertainty quantification module."
-               style="width: 70%;"/>
-        </div>
-        <br/>
-        <!--/ Uncertainty Quantification. -->
+        <div class="columns is-centered">
+          <!-- Uncertainty Quantification. -->
+          <div class="column">
+            <h3 class="title is-4">Uncertainty Quantification based on Evidential Deep Learning</h3>
+            <div class="content has-text-justified">
+              <p>
+                We quantify epistemic uncertainty by extending evidential deep learning (EDL) to
+                neural implicit mapping. A Normal Inverse-Gamma (NIG) prior is placed over the SDF
+                prediction at each 3D point, and the posterior is updated via two lightweight learnable
+                grids that predict a confidence score and a second moment. This design ensures
+                spatial locality and real-time performance through trilinear interpolation, while
+                keeping the mapping module unchanged. The entropy of the posterior NIG distribution
+                serves as the epistemic uncertainty measure: it is high in poorly observed or
+                unobserved regions and low where observations are sufficient, exhibiting a strong
+                correlation with actual SDF prediction errors.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="./static/images/uq_explain.png"
+                   alt="Illustration of the epistemic uncertainty quantification module."
+                   style="width: 100%;"/>
+            </div>
+          </div>
+          <!--/ Uncertainty Quantification. -->
 
-        <!-- Hierarchical Planning. -->
-        <h3 class="title is-4">Hierarchical Planning</h3>
-        <div class="content has-text-justified">
-          <p>
-            To achieve both comprehensive scene coverage and detailed reconstruction, we propose
-            a hierarchical planning framework. The global planner decomposes the environment into
-            fixed-resolution regions, classifies each as unexplored, exploring, or explored based
-            on frontier and uncertainty information, and determines the optimal visitation order
-            by solving a Traveling Salesman Problem. The local planner then refines the global
-            path into a 6DoF camera trajectory by selecting target viewpoints that maximize
-            joint epistemic uncertainty accumulated along the trajectory, using a greedy
-            submodular optimization strategy. When no informative viewpoints remain, a fallback
-            mechanism uses A* on the region connectivity graph to escape local optima and
-            continue exploration.
-          </p>
+          <!-- Hierarchical Planning. -->
+          <div class="column">
+            <h3 class="title is-4">Hierarchical Planning</h3>
+            <div class="content has-text-justified">
+              <p>
+                To achieve both comprehensive scene coverage and detailed reconstruction, we propose
+                a hierarchical planning framework. The global planner decomposes the environment into
+                fixed-resolution regions, classifies each as unexplored, exploring, or explored based
+                on frontier and uncertainty information, and determines the optimal visitation order
+                by solving a Traveling Salesman Problem. The local planner then refines the global
+                path into a 6DoF camera trajectory by selecting target viewpoints that maximize
+                joint epistemic uncertainty accumulated along the trajectory, using a greedy
+                submodular optimization strategy. When no informative viewpoints remain, a fallback
+                mechanism uses A* on the region connectivity graph to escape local optima and
+                continue exploration.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="./static/images/planning_explain.png"
+                   alt="Illustration of scene coverage planning and local trajectory planning."
+                   style="width: 100%;"/>
+            </div>
+          </div>
+          <!--/ Hierarchical Planning. -->
         </div>
-        <div class="content has-text-centered">
-          <img src="./static/images/planning_explain.png"
-               alt="Illustration of scene coverage planning and local trajectory planning."
-               style="width: 70%;"/>
-        </div>
-        <!--/ Hierarchical Planning. -->
 
       </div>
     </div>
@@ -329,8 +334,8 @@
 
         <!--/ Quantitative Results. -->
 
-        <!-- 3D Reconstruction. -->
-        <h3 class="title is-4">3D Reconstruction</h3>
+        <!-- Qualitative Results. -->
+        <h3 class="title is-4">Qualitative Results</h3>
 
         <!-- Gibson Dataset. -->
         <h4 class="title is-5">Gibson Dataset</h4>
@@ -341,11 +346,13 @@
             avoiding artifacts and empty holes in challenging regions.
           </p>
         </div>
-        <div class="comparison-group">
+        <div class="comparison-group" style="max-width: 75%; margin: 0 auto;">
           <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <div class="buttons is-centered has-addons">
-              <button class="button is-dark is-rounded scene-toggle is-active" data-scene="ribera">Ribera</button>
-              <button class="button is-dark is-rounded scene-toggle" data-scene="swormville">Swormville</button>
+            <div class="select">
+              <select class="scene-select">
+                <option value="ribera">Ribera</option>
+                <option value="swormville">Swormville</option>
+              </select>
             </div>
           </div>
           <div class="bal-container"
@@ -353,10 +360,10 @@
                data-naruto-ribera="./static/images/gibson/naruto_mesh_ribera.png"
                data-ours-swormville="./static/images/gibson/ours_mesh_swormville.png"
                data-naruto-swormville="./static/images/gibson/naruto_mesh_swormville.png">
-            <img src="./static/images/gibson/ours_mesh_ribera.png" class="bal-img" alt="Ours">
-            <img src="./static/images/gibson/naruto_mesh_ribera.png" class="bal-img bal-overlay" alt="Naruto">
-            <div class="bal-label bal-label-after">Ours</div>
-            <div class="bal-label bal-label-before">Naruto</div>
+            <img src="./static/images/gibson/naruto_mesh_ribera.png" class="bal-img" alt="Naruto">
+            <img src="./static/images/gibson/ours_mesh_ribera.png" class="bal-img bal-overlay" alt="HERE">
+            <div class="bal-label bal-label-before">HERE</div>
+            <div class="bal-label bal-label-after">NARUTO</div>
             <div class="bal-divider">
               <div class="bal-handle-circle">
                 <span>&#9664;</span><span>&#9654;</span>
@@ -390,11 +397,13 @@
             Matterport3D scenes.
           </p>
         </div>
-        <div class="comparison-group">
+        <div class="comparison-group" style="max-width: 75%; margin: 0 auto;">
           <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <div class="buttons is-centered has-addons">
-              <button class="button is-dark is-rounded scene-toggle is-active" data-scene="gdvg">Gdvg</button>
-              <button class="button is-dark is-rounded scene-toggle" data-scene="ple4">pLe4</button>
+            <div class="select">
+              <select class="scene-select">
+                <option value="gdvg">Gdvg</option>
+                <option value="ple4">pLe4</option>
+              </select>
             </div>
           </div>
           <div class="bal-container"
@@ -402,10 +411,10 @@
                data-naruto-gdvg="./static/images/mp3d/naruto_mesh_gdvg.png"
                data-ours-ple4="./static/images/mp3d/ours_mesh_ple4.png"
                data-naruto-ple4="./static/images/mp3d/naruto_mesh_ple4.png">
-            <img src="./static/images/mp3d/ours_mesh_gdvg.png" class="bal-img" alt="Ours">
-            <img src="./static/images/mp3d/naruto_mesh_gdvg.png" class="bal-img bal-overlay" alt="Naruto">
-            <div class="bal-label bal-label-after">Ours</div>
-            <div class="bal-label bal-label-before">Naruto</div>
+            <img src="./static/images/mp3d/naruto_mesh_gdvg.png" class="bal-img" alt="Naruto">
+            <img src="./static/images/mp3d/ours_mesh_gdvg.png" class="bal-img bal-overlay" alt="HERE">
+            <div class="bal-label bal-label-before">HERE</div>
+            <div class="bal-label bal-label-after">NARUTO</div>
             <div class="bal-divider">
               <div class="bal-handle-circle">
                 <span>&#9664;</span><span>&#9654;</span>
@@ -416,7 +425,7 @@
         </div>
         <!--/ Matterport3D Dataset. -->
 
-        <!--/ 3D Reconstruction. -->
+        <!--/ Qualitative Results. -->
 
       </div>
     </div>

@@ -183,11 +183,12 @@ body {
 
 .bal-label {
   position: absolute;
-  bottom: 12px;
-  padding: 4px 10px;
+  top: 12px;
+  padding: 5px 12px;
   background: rgba(0, 0, 0, 0.55);
   color: white;
-  font-size: 13px;
+  font-size: 18px;
+  font-weight: bold;
   border-radius: 4px;
   font-family: 'Google Sans', sans-serif;
   pointer-events: none;

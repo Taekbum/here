@@ -41,20 +41,17 @@ function initComparisonSliders() {
 
     update(50);
 
-    toggles.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        toggles.forEach(function(b) { b.classList.remove('is-active'); });
-        this.classList.add('is-active');
-
-        var scene = this.dataset.scene;
+    var select = group.querySelector('.scene-select');
+    if (select) {
+      select.addEventListener('change', function() {
+        var scene = this.value;
         var key = scene.charAt(0).toUpperCase() + scene.slice(1);
-        baseImg.src = container.dataset['ours' + key];
-        overlay.src = container.dataset['naruto' + key];
-
+        baseImg.src = container.dataset['naruto' + key];
+        overlay.src = container.dataset['ours' + key];
         input.value = 50;
         update(50);
       });
-    });
+    }
   });
 }
 

@@ -18,7 +18,6 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -50,38 +49,34 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">HERE: Hierarchical Active Exploration of Radiance Field with Epistemic Uncertainty Minimization</h1>
+          <div class="is-size-5 has-text-centered" style="margin-bottom: 1rem;">
+            <span class="publication-venue">RA-L 2026</span>
+          </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+              <a href="https://taekbum.github.io/">Taekbeom Lee</a><sup>*</sup>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <a href="https://dabinkim.com/">Dabin Kim</a><sup>*</sup>,</span>
             <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              <a href="#">Youngseok Jang</a>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+              <a href="#">H. Jin Kim</a>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block">Seoul National University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2601.07242"
+                <a href="https://arxiv.org/abs/2601.07242"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -122,7 +117,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
+        <source src="./static/videos/simulation.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
@@ -271,46 +266,74 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
 
-        <!-- UQ Evaluation. -->
-        <h3 class="title is-4">Uncertainty Quantification Evaluation</h3>
+        <!-- Quantitative Results. -->
+        <h3 class="title is-4">Quantitative Results</h3>
+
+        <div class="columns is-centered">
+          <!-- Uncertainty Quantification. -->
+          <div class="column">
+            <h4 class="title is-5">Uncertainty Quantification</h4>
+            <div class="content has-text-justified">
+              <p>
+                We evaluate our epistemic UQ against other INR-based active reconstruction
+                methods using the AUSE metric. Our uncertainty maps show strong spatial
+                correlation with SDF prediction errors, outperforming all baselines on every
+                evaluated scene in the Gibson dataset.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="./static/images/bar_graph3.png"
+                   alt="Uncertainty and SDF error comparison, and AUSE plot on Gibson dataset."
+                   style="width: 100%;"/>
+            </div>
+          </div>
+          <!--/ Uncertainty Quantification. -->
+
+          <!-- Reconstruction Completeness over Time. -->
+          <div class="column">
+            <h4 class="title is-5">Reconstruction Completeness over Time</h4>
+            <div class="content has-text-justified">
+              <p>
+                We compare reconstruction completeness over exploration steps against
+                state-of-the-art methods on complex multi-room Gibson scenes. Our method
+                achieves superior completion ratio and lower completion error, demonstrating
+                the effectiveness of epistemic uncertainty-driven hierarchical planning.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="./static/images/completion_figure.png"
+                   alt="Completion ratio and completion metric over exploration steps on Gibson dataset."
+                   style="width: 100%;"/>
+            </div>
+          </div>
+          <!--/ Reconstruction Completeness over Time. -->
+        </div>
+
+        <!-- Per-Scene Reconstruction Quality. -->
+        <h4 class="title is-5">Per-Scene Reconstruction Quality</h4>
         <div class="content has-text-justified">
           <p>
-            We evaluate our epistemic uncertainty quantification against other INR-based active
-            reconstruction methods using the Area Under the Sparsification Error (AUSE) metric,
-            where a lower value indicates better alignment between predicted uncertainty and
-            actual reconstruction error. As shown below, our uncertainty maps exhibit a strong
-            spatial correlation with SDF prediction errors across diverse scenes, outperforming
-            all baselines on every evaluated scene in the Gibson dataset.
+            We report completion metrics for individual scenes across both the Gibson and
+            Matterport3D datasets. Our method achieves the best completion ratio and
+            completion error in the majority of scenes, demonstrating consistent superiority
+            across environments of varying scale and complexity.
           </p>
         </div>
         <div class="content has-text-centered">
-          <img src="./static/images/bar_graph3.png"
-               alt="Uncertainty and SDF error comparison, and AUSE plot on Gibson dataset."
+          <img src="./static/images/per_scene_result.png"
+               alt="Per-scene reconstruction quality on Gibson and Matterport3D datasets."
                style="width: 100%;"/>
         </div>
         <br/>
-        <!--/ UQ Evaluation. -->
+        <!--/ Per-Scene Reconstruction Quality. -->
+
+        <!--/ Quantitative Results. -->
 
         <!-- 3D Reconstruction. -->
         <h3 class="title is-4">3D Reconstruction</h3>
 
         <!-- Gibson Dataset. -->
         <h4 class="title is-5">Gibson Dataset</h4>
-        <div class="content has-text-justified">
-          <p>
-            We compare reconstruction completeness over time against the state-of-the-art
-            INR-based active reconstruction method on complex multi-room scenes from the Gibson
-            dataset. Our method achieves superior completion ratio and lower completion error
-            across exploration steps, demonstrating that the combination of epistemic
-            uncertainty-driven local planning and global coverage planning leads to more
-            thorough and accurate scene reconstruction over time.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images/completion_figure.png"
-               alt="Completion ratio and completion metric over exploration steps on Gibson dataset."
-               style="width: 100%;"/>
-        </div>
         <div class="content has-text-justified">
           <p>
             Drag the slider to compare reconstructed meshes between Naruto and our method.
@@ -400,6 +423,30 @@
     <!--/ Results. -->
 
 
+    <!-- Real-World Experiments. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Real-World Experiments</h2>
+        <div class="content has-text-justified">
+          <p>
+            To validate real-world applicability, we deploy <span class="dnerf">HERE</span> on
+            a ground robot (Turtlebot3 Waffle) equipped with an RGB-D camera (Realsense D455),
+            with pose provided by a motion capture system. The robot autonomously explores an
+            indoor lab environment, and the reconstructed mesh demonstrates that our framework
+            operates effectively under real-world conditions, producing high-quality scene
+            reconstruction without manual data collection.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video controls muted preload playsinline width="75%">
+            <source src="./static/videos/real-world.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Real-World Experiments. -->
+
+
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
@@ -433,40 +480,15 @@
 </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Real-World Experiments</h2>
-        <div class="content has-text-justified">
-          <p>
-            To validate real-world applicability, we deploy <span class="dnerf">HERE</span> on
-            a ground robot (Turtlebot3 Waffle) equipped with an RGB-D camera (Realsense D455),
-            with pose provided by a motion capture system. The robot autonomously explores an
-            indoor lab environment, and the reconstructed mesh demonstrates that our framework
-            operates effectively under real-world conditions, producing high-quality scene
-            reconstruction without manual data collection.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video controls muted preload playsinline width="75%">
-            <source src="./static/videos/real-world.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{lee2026here,
-  author    = {Lee, Taekbeom and Kim, Dabin and Jang, Youngseok and Kim, H. Jin},
   title     = {HERE: Hierarchical Active Exploration of Radiance Field with Epistemic Uncertainty Minimization},
+  author    = {Lee, Taekbeom and Kim, Dabin and Jang, Youngseok and Kim, H Jin},
   journal   = {IEEE Robotics and Automation Letters},
   year      = {2026},
+  publisher={IEEE}
 }</code></pre>
   </div>
 </section>
